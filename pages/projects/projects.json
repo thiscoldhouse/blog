@@ -1,0 +1,12 @@
+{
+  "living-room": {
+    "title": "Living Room",
+    "tagline": "An adventure in carpentry and wallpaper",
+    "preview-image": "images/living-room-preview.png"
+  },
+  "seedlings": {
+    "title": "The Seedlings Emerge!",
+    "tagline": "Getting started on our ambitous garden",
+    "preview-image": "images/seedlings-preview.png"
+  }
+}
