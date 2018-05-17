@@ -1,28 +1,35 @@
-<script>
-  var makeProjectPage = function(){
-    $.ajax({
-      url:"pages/projects/projects.json",
-      type: 'GET',
-      contentType: 'application/json; charset=utf-8',
-      cache: false
-    }).done( function(data){
-      $.each(data, function(k, v) {
-	$("#project-container").append(
-	);
-      })});
+<!-- <script> -->
+<!--   var makeProjectPage = function(){ -->
+<!--     debugger; -->
+<!--     $.ajax({ -->
+<!--       url:"pages/projects/projects.json", -->
+<!--       type: 'GET', -->
+<!--       contentType: 'application/json; charset=utf-8', -->
+<!--       cache: false -->
+<!--     }).done( function(data){ -->
+<!--       $.each(data, function(k, v) { -->
+<!-- 	debugger; -->
+<!-- 	$("#project-container").append( -->
+<!-- 	); -->
+<!--       })});	 -->
 
-  }
-  makeProjectPage();
-</script>
+<!--   } -->
+<!--   makeProjectPage(); -->
 
+<!-- </script>    -->
+<!-- <div class="blog-entry"> -->
+<!--   <div id="project-container"> -->
+<!--     <div class="project-link"> -->
+<!--       <div class="project-title"> -->
+<!--       </div> -->
+<!--       <div class="project-preview"> -->
+<!-- 	<img src="images/living-room-preview.png"> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!-- </div> -->
 <div class="blog-entry">
-  <div id="project-container">
-    <div class="project-link">
-      <div class="project-title">
-      </div>
-      <div class="project-preview">
-	<img src="images/living-room-preview.png">
-      </div>
-    </div>
-  </div>
+  <p>Just one project for now! I promise I'll add more</p>
+  <p><a href="/#projects/living_room">Living Room, Phase 1</a></p>
+
 </div>
