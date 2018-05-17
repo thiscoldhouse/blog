@@ -1,6 +1,5 @@
 <script>
   var makeProjectPage = function(){
-    debugger;
     $.ajax({
       url:"pages/projects/projects.json",
       type: 'GET',
@@ -8,15 +7,14 @@
       cache: false
     }).done( function(data){
       $.each(data, function(k, v) {
-	debugger;
 	$("#project-container").append(
 	);
-      })});	
+      })});
 
   }
   makeProjectPage();
+</script>
 
-</script>   
 <div class="blog-entry">
   <div id="project-container">
     <div class="project-link">

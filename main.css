@@ -97,11 +97,11 @@ html *{
 }
 
 #coursel-container {
-    text-align: center;    
+    text-align: center;
 }
 
 #project-carousel {
-    display: inline-block;    
+    display: inline-block;
     width: 100%;
     height: 1000px;
 }
@@ -125,7 +125,7 @@ html *{
 #carousel-link{
     width: 100%;
     height:auto;
-    
+
 }
 
 /* util for blog */
@@ -139,8 +139,15 @@ html *{
 
 .blog-entry p{
     font-size: 18;
-    margin-left: 17px;
-    margin-right: 17px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.blog-entry h3{
+    text-align: center
+}
+.blog-entry h2{
+    text-align: center
 }
 
 .full-width div{
@@ -156,4 +163,19 @@ html *{
     margin-right: auto;
     width: 100%;
     height: 400px
+}
+
+.inline-image img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height:auto;
+}
+.inline-image-vertical img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 800px;
+    width:auto;
 }

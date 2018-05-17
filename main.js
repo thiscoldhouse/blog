@@ -24,23 +24,23 @@ $( document ).ready(function(){
 	  );
 	  $("#carousel-image").attr(
 	    "src", next_image
-	  );	
+	  );
 	  $("#carousel-text-placeholder").text(next_text);
 	  $("#carousel-image").fadeIn("slow");
 	  $("#carousel-text-placeholder").fadeIn("slow");
 	});
       });
     });
-  }
+  } ;
 
 
-  
+
   // ----------- simple routing -------------
- 
+
   var toggle_page = function(page_name) {
     window.location.hash = "#"+ page_name;
     $(".content-container").load("/pages/" + page_name + ".html");
-  }  
+  }  ;
   $(".navbarlink").click(function(e) {
     e.preventDefault();
     toggle_page(e.target.id);
@@ -49,14 +49,14 @@ $( document ).ready(function(){
   if (!("onhashchange" in window)) {
     alert("You're running an old browser! This Cold House won't work very well, though I'll do my best. Please consider upgrading for the best experience!")
   }
-  
-  locationHasChanged = function(){    
+
+  var locationHasChanged = function(){
     toggle_page(window.location.hash.substring(1));
   };
   window.onhashchange = locationHasChanged;
 
-  
-  // set up the page 
+
+  // set up the page
   // actually injects the right html in our simple routing scheme
   var page = window.location.hash.substring(1);
   if (page.length != 2 || !page[1]){
@@ -64,17 +64,16 @@ $( document ).ready(function(){
   }
   else {
     page = page[1];
-    page = "/pages/" + page + ".html"
-  }
-    
+    page = "/pages/" + page + ".html";
+  };
+
   $(".content-container").load(page);
-  
-  // start the carousel
+
+  // start up the site
+  locationHasChanged();
+
   blog.carousel_state = 0;
   window.setInterval(toggle_carousel_image, 5000);
   toggle_carousel_image();  // load the first one
 
-  
-})
-
-
+});
