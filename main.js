@@ -60,7 +60,7 @@ $( document ).ready(function(){
   // actually injects the right html in our simple routing scheme
   var page = window.location.hash.substring(1);
   if (page.length != 2 || !page[1]){
-    page = "/pages/home.html";
+    page = "/pages/about.html";
   }
   else {
     page = page[1];
