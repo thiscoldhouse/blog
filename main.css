@@ -144,6 +144,11 @@ html *{
     margin-left: 5%;
     margin-right: 5%;
 }
+.blog-entry ul{
+    font-size: 18;
+    margin-left: 5%;
+    margin-right: 5%;
+}
 
 .blog-entry h3{
     text-align: center
