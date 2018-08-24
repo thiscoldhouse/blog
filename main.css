@@ -173,16 +173,49 @@ html *{
 }
 
 .inline-image img {
+    border: 4px #333333 solid;
+    border-radius: 5px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 80%;
     height:auto;
 }
+
+.inline-image-vertical div{
+    display: inline-block;
+}
+
 .inline-image-vertical img {
+    border: 4px #333333 solid;
+    border-radius: 5px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 800px;
+    height: 80%px;
     width:auto;
+}
+
+
+/* ================================== */
+.projects-preview-image div{
+    margin: 0 auto;
+    display: block;
+    padding:5px;
+    /* width: 75%; */
+    height: auto;
+    border-radius:5%;
+    overflow: hidden;
+}
+.projects-preview-image img{
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+/* Clear floats after image containers */
+.row{
+    padding: 5%;
+    margin: 5%;
+    background-color: #dddddd;
 }
