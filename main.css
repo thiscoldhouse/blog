@@ -223,9 +223,7 @@ html *{
 }
 
 .projects-preview-image {
-
     border-radius: 2px;
-
     width: 300px;
     height: 300px;
     object-fit: cover;
@@ -241,4 +239,16 @@ html *{
 
 .projects-container p {
     text-align:center;
+}
+
+/* --------------------------------- */
+
+.about-me-picture img{
+    border-radius: 2px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    padding: 0 15px;
+    float: left;
+    margin-left: 4%;
 }
