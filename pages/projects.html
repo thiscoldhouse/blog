@@ -1,48 +1,22 @@
-<!-- <script> -->
-<!--   var makeProjectPage = function(){ -->
-<!--     debugger; -->
-<!--     $.ajax({ -->
-<!--       url:"pages/projects/projects.json", -->
-<!--       type: 'GET', -->
-<!--       contentType: 'application/json; charset=utf-8', -->
-<!--       cache: false -->
-<!--     }).done( function(data){ -->
-<!--       $.each(data, function(k, v) { -->
-<!-- 	debugger; -->
-<!-- 	$("#project-container").append( -->
-<!-- 	); -->
-<!--       })});	 -->
-
-<!--   } -->
-<!--   makeProjectPage(); -->
-
-<!-- </script>    -->
-<!-- <div class="blog-entry"> -->
-<!--   <div id="project-container"> -->
-<!--     <div class="project-link"> -->
-<!--       <div class="project-title"> -->
-<!--       </div> -->
-<!--       <div class="project-preview"> -->
-<!-- 	<img src="images/living-room-preview.png"> -->
-<!--       </div> -->
-<!--     </div> -->
-<!--   </div> -->
-<!-- </div> -->
-<div class="row">
-  <div class="projects-preview-image">
-    <img src="/images/living-room-preview.jpg">
+<div id="projects-page">
+  <div class="projects-container">
+    <a href="#projects/living_room">
+      <div>
+        <img class="projects-preview-image" src="/images/living-room-preview.jpg">
+        <p>Living Room - Phase 1</p>
+      </div>
+    </a>
+    <a href="#projects/thiswarmhouse1">
+      <div>
+        <img class="projects-preview-image" src="/images/thiswarmhousepreview.jpg">
+        <p>This warm house?</p>
+      </div>
+    </a>
+    <a href="#projects/shop">
+      <div>
+        <img src="/images/shoppreview.jpg" class="projects-preview-image">
+        <p>Finally, a workspace!</p>
+      </div>
+    </a>
   </div>
-  <p>Living Room, Phase 1</p>
-</div>
-<div class="row">
-  <div class="projects-preview-image">
-    <img src="/images/thiswarmhousepreview.jpg">
-  </div>
-  <p>This warm house?</p>
-</div>
-<div class="row">
-  <div class="projects-preview-image">
-    <img src="/images/shoppreview.jpg">
-  </div>
-  <p>Finally, a workspace!</p>
 </div>
