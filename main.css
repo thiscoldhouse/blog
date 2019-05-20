@@ -252,3 +252,8 @@ html *{
     float: left;
     margin-left: 4%;
 }
+
+
+.slideshow {
+    cursor: pointer;
+}
