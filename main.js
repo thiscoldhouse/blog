@@ -29,7 +29,7 @@ $( document ).ready(function(){
     // actually injects the right html in our simple routing scheme
     var page = window.location.hash.substring(1);
     if (page.length != 2 || !page[1]){
-        page = "/pages/about.html";
+        page = "/pages/projects.html";
     }
     else {
         page = page[1];
