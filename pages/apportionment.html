@@ -41,16 +41,22 @@
       float: left;
   }
 
+  #add-row{
+      float: right;
+  }
+
   .reset-buttons button:not(:last-child) {
       border-right: none;
   }
 
   .reset-buttons{
       white-space:normal;
-      width: 600px;
+      width: 90%;
       content: "";
       display: block;
       margin: auto;
+      float: left;
+      margin-left: 5%;
   }
 
   .reset-buttons button:hover {
@@ -64,13 +70,15 @@
   <p>I recently learned about the method for calculating apportionment and thought it was interesting, so I put together this quick and dirty tool for playing with the numbers.
   </p>
   <p>If you're curious, <a href="https://en.wikipedia.org/wiki/United_States_congressional_apportionment#The_method_of_equal_proportions">wikipedia has a great summary on the algorithm</a>, and if you want something a little more digestible and filled with lots of good information, the fantastic podcast <a href="https://openargs.com">Opening Arguments</a> did an <a href="https://openargs.com/oa486-apportionment-might-not-be-final/">episode</a> on apportionment.</p>
-  <p>So have some fun, play around with changing the populations. Like everything else on this blog, the code is open source and can be viewed on my github.</p>
+  <p>So have some fun, play around with changing the populations and adding PR and DC. Like everything else on this blog, the code is open source and can be viewed on my github.</p>
 </div>
 <br>
 
 <div class="reset-buttons">
-  <button id="2020-reset">Reset table to 2020 Census Results</button>
-  <button id="2010-reset">Reset table to 2010 Census Results</button>
+  <button id="2020-reset">Reset table to 2020 census results</button>
+  <button id="2010-reset">Reset table to 2010 census results</button>
+  <button id="add-row">Add state</button>
+
 </div>
 
 <br>
@@ -85,12 +93,9 @@
     </tr>
   </thead>
   <tbody id="table-body">
-    <!-- <tr class="active-row"> -->
-      <!--   <td>Melissa</td> -->
-      <!--   <td>5150</td> -->
-      <!-- </tr> -->
   </tbody>
 </table>
+<br><br>
 
 <script>
   $(document).ready(function(){
@@ -527,9 +532,19 @@
 
     function render(){
       $('#table-body').empty();
-      for(i in census){
+
+      censusDict ={}
+      for (i in census){
+        censusDict[census[i]['State']] = census[i];
+      }
+
+      for(stateName in state.pops){
+        var rank = 'N/A'
+        if (stateName in censusDict){
+          rank = censusDict[stateName]['Rank']
+        }
         $('#table-body').append(
-          makeTableRow(census[i]['Rank'], census[i]['State'], state['pops'][census[i]['State']], state['apportionment'][census[i]['State']])
+          makeTableRow(rank, stateName, state['pops'][stateName], state['apportionment'][stateName])
         )
       }
     };
@@ -537,6 +552,13 @@
     // ------ event handlers -------
 
     function attachTableHandlers(){
+      $('.popDataEdit').on('keydown', function(e){
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          e.preventDefault();
+          $(e.currentTarget).blur();
+        }
+      });
+
       $('.popDataEdit').on('blur', function(e){
         var newPop = e.currentTarget.innerHTML;
         newPop = cleanNumber(newPop);
@@ -554,8 +576,15 @@
         fillPopsInState('2020 Population');
         update();
       });
+
       $('#2010-reset').on('click', function(){
         fillPopsInState('2010 Population');
+        update();
+      });
+
+      $('#add-row').on('click', function(){
+        stateName = prompt('Enter state name');
+        state['pops'][stateName] = 0;
         update();
       });
 
