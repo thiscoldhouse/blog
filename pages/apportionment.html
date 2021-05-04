@@ -28,28 +28,32 @@
       color: #009879;
   }
 
-  .btn-group button {
+  .popDataEdit:hover {
+      cursor: pointer;
+  }
+
+  .reset-buttons button {
       background-color: #333333;
       border: 1px solid n;
       color: white;
       padding: 10px 20px;
-      cursor: pointer; /* Pointer/hand icon */
-      float: left; /* Float the buttons side by side */
+      cursor: pointer;
+      float: left;
   }
 
-  .btn-group button:not(:last-child) {
+  .reset-buttons button:not(:last-child) {
       border-right: none;
   }
 
-  .btn-group{
-      width: 500px;
+  .reset-buttons{
+      white-space:normal;
+      width: 600px;
       content: "";
-      clear: both;
       display: block;
       margin: auto;
   }
 
-  .btn-group button:hover {
+  .reset-buttons button:hover {
       background-color: #222222;
   }
 
@@ -64,7 +68,7 @@
 </div>
 <br>
 
-<div class="btn-group">
+<div class="reset-buttons">
   <button id="2020-reset">Reset table to 2020 Census Results</button>
   <button id="2010-reset">Reset table to 2010 Census Results</button>
 </div>
