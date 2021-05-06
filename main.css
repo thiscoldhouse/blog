@@ -202,17 +202,17 @@ html *{
 .projects-container div{
     display:inline-block;
     margin: auto;
+    text-align: center;
 }
 
-#projects-page {
+.projects-page {
     text-align: center;
-    position: absolute;
     padding-top:30px;
     padding-bottom:100px;
 }
 
 .projects-preview-image {
-    margin: 5px;
+    margin: 5px auto;
     border: 2px #333333 solid;
     border-radius: 2px;
     width: 300px;
