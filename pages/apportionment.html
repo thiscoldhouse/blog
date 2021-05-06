@@ -1,29 +1,32 @@
+<!-- Note: I made this page to be stand-alone so othersc can deploy it. Just uncomment the following script dependency and it should work out of the box: -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 <style>
-  .maintable {
+  /* results table */
+  .main-table {
       margin-left: auto;
       margin-right: auto;
       border-collapse: collapse;
       min-width: 90%;
       font-family: sans-serif;
   }
-  .maintable thead tr {
+  .main-table thead tr {
       background-color: #333333;
       color: #ffffff;
       text-align: left;
   }
-  .maintable th,
-  .maintable td {
+  .main-table th,
+  .main-table td {
       padding: 12px 15px;
   }
-  .maintable tbody tr {
+  .main-table tbody tr {
       border-bottom: 1px solid #dddddd;
   }
 
-  .maintable tbody tr:nth-of-type(even) {
+  .main-table tbody tr:nth-of-type(even) {
       background-color: #f3f3f3;
   }
 
-  .maintable tbody tr.active-row {
+  .main-table tbody tr.active-row {
       font-weight: bold;
       color: #009879;
   }
@@ -45,6 +48,7 @@
       float: right;
   }
 
+  /* buttons */
   .reset-buttons button:not(:last-child) {
       border-right: none;
   }
@@ -70,7 +74,7 @@
   <p>I recently learned about the method for calculating apportionment and thought it was interesting, so I put together this quick and dirty tool for playing with the numbers.
   </p>
   <p>If you're curious, <a href="https://en.wikipedia.org/wiki/United_States_congressional_apportionment#The_method_of_equal_proportions">wikipedia has a great summary on the algorithm</a>, and if you want something a little more digestible and filled with lots of good information, the fantastic podcast <a href="https://openargs.com">Opening Arguments</a> did an <a href="https://openargs.com/oa486-apportionment-might-not-be-final/">episode</a> on apportionment.</p>
-  <p>So have some fun, play around with changing the populations and adding PR and DC. Like everything else on this blog, the code is open source and can be viewed on my github.</p>
+  <p>So have some fun, play around with changing the populations, or add new states. Like everything else on this blog, the code is open source and can be viewed on <a href="https://github.com/thiscoldhouse/blog/blob/master/pages/apportionment.html">my github.</a> This page was built to be stand-alone so anyone with a blog can and should feel free to use it.</p>
 </div>
 <br>
 
@@ -83,7 +87,7 @@
 
 <br>
 
-<table class="maintable">
+<table class="main-table">
   <thead>
     <tr>
       <th>2020 Rank</th>
@@ -510,6 +514,13 @@
     };
 
     // ------ rendering stuff---------
+    function commaSeparateNumber(val){
+      // taken from  https://stackoverflow.com/questions/3883342/add-commas-to-a-number-in-jquery
+      while (/(\d+)(\d{3})/.test(val.toString())){
+        val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+      }
+      return val;
+    }
 
     function cleanNumber(number){
       if (typeof(number) == "number"){
@@ -521,13 +532,20 @@
     };
 
     function fillPopsInState(censusKey){
+      state.pops = {}; // clear old data
       for(i in census){
-        state['pops'][census[i]['State']] = cleanNumber(census[i][censusKey]);
+        state.pops[census[i]['State']] = cleanNumber(census[i][censusKey]);
       }
     };
 
     function makeTableRow(rank, state, population, apportionment){
-      return $("<tr><td>" + rank + '</td><td>' + state + "</td><td class='popDataEdit' contenteditable='true'>" + population + "</td><td>" + apportionment + "</tr>" )
+      return $(
+        "<tr><td>" + rank +
+          '</td><td>' + state +
+          "</td><td class='popDataEdit' contenteditable='true'>" +
+          commaSeparateNumber(population) +
+          "</td><td>" + apportionment + "</tr>"
+      )
     };
 
     function render(){
@@ -538,13 +556,20 @@
         censusDict[census[i]['State']] = census[i];
       }
 
-      for(stateName in state.pops){
+      var sortedStates = Object.keys(state.pops);
+      sortedStates.sort(
+        function(state1, state2){
+          return state.pops[state1] < state.pops[state2] && 1 || -1
+        });
+
+      for (i in sortedStates){
+        stateName = sortedStates[i]
         var rank = 'N/A'
         if (stateName in censusDict){
           rank = censusDict[stateName]['Rank']
         }
         $('#table-body').append(
-          makeTableRow(rank, stateName, state['pops'][stateName], state['apportionment'][stateName])
+          makeTableRow(rank, stateName, state.pops[stateName], state.apportionment[stateName])
         )
       }
     };
@@ -566,7 +591,7 @@
           newPop = 0
         }
         $(e.currentTarget).html(newPop);
-        state['pops'][$(e.currentTarget).siblings()[1].innerHTML] = newPop;
+        state.pops[$(e.currentTarget).siblings()[1].innerHTML] = newPop;
         update();
       });
     }
@@ -584,7 +609,7 @@
 
       $('#add-row').on('click', function(){
         stateName = prompt('Enter state name');
-        state['pops'][stateName] = 0;
+        state.pops[stateName] = 0;
         update();
       });
 
@@ -617,14 +642,13 @@
     function calculateApportionment(){
       // first round, some initial setup
       result = {}
-      for (stateName in state['pops']){
+      for (stateName in state.pops){
         result[stateName] = 1
       }
       for (i=0; i<=385; i++){
-        result = updateResult(result, state['pops'], i)
+        result = updateResult(result, state.pops, i)
       }
-
-      state['apportionment'] = result;
+      state.apportionment = result;
       return result
     }
 
