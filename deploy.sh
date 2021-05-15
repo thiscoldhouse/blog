@@ -13,7 +13,7 @@ server="172.104.24.137"
 
 cd /tmp
 git clone $reponame $localdeploy
-
+rm -rf /tmp/$localdeploy/.git
 echo "Beaming code to the servers"
 
 echo "First, removing old code"
