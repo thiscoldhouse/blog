@@ -58,12 +58,18 @@ $( document ).ready(function(){
     $('#close-modal').click(function(e){
       $('#modal').css('display', 'none');
     });
+
+    // set initial state
+    console.log('hi');
   }
 
   blog['attachModalHandlers'] = attachModalHandlers;
 
   function setupPage(){
     attachNavHandlers();
+
+    // hide the modal
+    $('#modal').css('display', 'none');
 
     var page = window.location.hash.substring(1);
 
