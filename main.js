@@ -36,7 +36,7 @@ $( document ).ready(function(){
         $('#modal-image').attr('src', image);
 
 
-        // make a centered square
+        // make a centered modal
         let offset = $(document).scrollTop();
         let viewportHeight = $(window).height();
         let viewportWidth = $(window).width();
