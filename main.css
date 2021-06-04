@@ -58,6 +58,17 @@ html *{
     width:          1px;
 }
 
+@media screen and (max-width: 500px){
+    .navbar li {
+        float: left;
+        width: 100%
+    }
+
+    .navbar-title{
+        display: none;
+    }
+}
+
 /* home page */
 
 .home-side-panel {
